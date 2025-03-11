@@ -18,16 +18,18 @@ function MonsterForm() {
     age: 0,
   });
 
-  const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const nameInputElement = e.target;
-    setFormInputs({ ...formInputs, nameInput: nameInputElement.value });
+  const handleMonsterFormInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+
+    setFormInputs((prevInputs) => ({
+      ...prevInputs,
+      [name]: value,
+    }));
   };
 
-  const handleSurNameInput = () => {};
-
   useEffect(() => {
-    console.log("nameInput", formInputs.nameInput);
-  }, [formInputs.nameInput]);
+    console.log("FormInputs", formInputs);
+  }, [formInputs]);
   return (
     <>
       <div className="monsterForm__container">
@@ -41,17 +43,38 @@ function MonsterForm() {
                 className="monsterName__input"
                 type="text"
                 value={formInputs.nameInput}
-                onChange={handleNameInput}
+                onChange={handleMonsterFormInputs}
               />
             </label>
-            <label htmlFor="">
-              <input className="monsterSurname__input" type="text" />
+            <label htmlFor="surNameInput">
+              <input
+                id="surNameInput"
+                name="surNameInput"
+                value={formInputs.surNameInput}
+                onChange={handleMonsterFormInputs}
+                className="monsterSurname__input"
+                type="text"
+              />
             </label>
-            <label htmlFor="">
-              <input className="monsterCourse" type="text" />
+            <label htmlFor="course">
+              <input
+                id="course"
+                name="course"
+                value={formInputs.course}
+                onChange={handleMonsterFormInputs}
+                className="monsterCourse"
+                type="text"
+              />
             </label>
-            <label htmlFor="">
-              <input className="monsterAge" type="text" />
+            <label htmlFor="age">
+              <input
+                id="age"
+                name="age"
+                value={formInputs.age}
+                onChange={handleMonsterFormInputs}
+                className="monsterAge"
+                type="text"
+              />
             </label>
           </fieldset>
         </form>
