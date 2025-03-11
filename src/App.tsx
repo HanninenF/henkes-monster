@@ -3,32 +3,44 @@ import "./App.scss";
 
 type MonsterForm = {
   nameInput: string;
+  surNameInput: string;
+  course: string;
+  age: number;
 };
 
 /* form */
 function MonsterForm() {
   //inputState
-  const [nameInput, setNameInput] = useState<string>("");
+  const [formInputs, setFormInputs] = useState<MonsterForm>({
+    nameInput: "",
+    surNameInput: "",
+    course: "",
+    age: 0,
+  });
 
   const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const nameInputElement = e.target;
-    setNameInput(nameInputElement.value);
+    setFormInputs({ ...formInputs, nameInput: nameInputElement.value });
   };
 
+  const handleSurNameInput = () => {};
+
   useEffect(() => {
-    console.log("nameInput", nameInput);
-  }, [nameInput]);
+    console.log("nameInput", formInputs.nameInput);
+  }, [formInputs.nameInput]);
   return (
     <>
       <div className="monsterForm__container">
         <form className="monsterForm" action="">
           <fieldset className="monsterFieldSet">
             <legend>Lägg till student</legend>
-            <label htmlFor="">
+            <label htmlFor="nameInput">
               <input
+                id="nameInput"
+                name="nameInput"
                 className="monsterName__input"
                 type="text"
-                value={nameInput}
+                value={formInputs.nameInput}
                 onChange={handleNameInput}
               />
             </label>
