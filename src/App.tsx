@@ -1,6 +1,14 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import "./App.scss";
 
+export type MonsterType = {
+  name: string;
+  surName: string;
+  course: string;
+  age: number;
+  category: string;
+};
+
 type FormInputProps = {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name: string;
@@ -60,9 +68,11 @@ type MonsterFormType = {
   course: string;
   age: number;
 };
-
+type MonsterFormProps = {
+  setMonsters: React.Dispatch<React.SetStateAction<MonsterType[]>>;
+};
 /* form */
-function MonsterForm() {
+function MonsterForm({ setMonsters }: MonsterFormProps) {
   //inputState
   const [formInputs, setFormInputs] = useState<MonsterFormType>({
     nameInput: "",
@@ -130,12 +140,18 @@ function MonsterForm() {
   );
 }
 
+function MonsterCard() {
+  //TODO: add monsterCard with state
+}
+
 function App() {
+  const [monsters, setMonsters] = useState<MonsterType[]>([]);
   {
   }
   return (
     <>
-      <MonsterForm />
+      <MonsterForm setMonsters={setMonsters} />
+      {/* <MonsterCard /> */}
     </>
   );
 }
