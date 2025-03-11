@@ -2,7 +2,7 @@
 
 _A project built with Vite, React, TypeScript, and SASS._
 
-## ðŸ“¥ Installation
+## Installation
 
 ### 1. Clone the repository
 
@@ -17,7 +17,7 @@ cd Henkes-Monster
 npm install
 ```
 
-## âš™ï¸ Run and Build the Project
+## Run and Build the Project
 
 ### Start the development server
 
@@ -35,9 +35,9 @@ npm run build
 
 This will generate production-ready files in the `dist/` directory.
 
-ðŸ”’ **Important!** The API key is stored in `keys/apiKey.ts` and **is not included in the repository** (added to `.gitignore`).
+**Important!** The API key is stored in `keys/apiKey.ts` and **is not included in the repository** (added to `.gitignore`).
 
-## ðŸš€ Technologies & Tools
+## Technologies & Tools
 
 <p align="left">
   <img src="https://raw.githubusercontent.com/github/explore/main/topics/react/react.png" alt="React" width="50"/>
@@ -60,18 +60,19 @@ This will generate production-ready files in the `dist/` directory.
 | <img src="https://raw.githubusercontent.com/github/explore/main/topics/github/github.png" alt="GitHub" width="30"/>             | **GitHub**     | Version control and hosting              |
 | <img src="https://i.postimg.cc/mrShVhNP/internet-54.png" alt="Fetch API" width="30"/>                                           | **Fetch API**  | Handling HTTP requests                   |
 
-## ðŸ”— Contact & LinkedIn
+## — Contact & LinkedIn
 
 Developed by **Fredrik HÃ¤nninen**  
-ðŸ“Ž [LinkedIn Profile](https://www.linkedin.com/in/fredrik-h%C3%A4nninen-0240a2327/)
+ [LinkedIn Profile](https://www.linkedin.com/in/fredrik-h%C3%A4nninen-0240a2327/)
 
 ---
 
-### ðŸ“ Additional Information
+### Additional Information
 
-âœ… `.gitignore` is configured to exclude **unnecessary files** (e.g., `node_modules`, `dist/`, API keys).  
-âœ… The code is **modularized** and follows the **DRY principle**.  
-âœ… **Full error handling** is implemented for API requests.
+`.gitignore` is configured to exclude **unnecessary files** (e.g., `node_modules`, `dist/`, API keys).  
+ The code is **modularized** and follows the **DRY principle**.  
+ **Full error handling** is implemented for API requests.
 
 ---
+
 ---
