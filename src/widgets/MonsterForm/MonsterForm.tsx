@@ -81,14 +81,14 @@ export default function MonsterForm({
               handleInputChange={handleMonsterFormInputs}
             />
             <FormInput
-              name="course"
+              name="courseInput"
               className="monsterCourse"
               type="text"
               value={formInputs.courseInput}
               handleInputChange={handleMonsterFormInputs}
             />
             <FormInput
-              name="age"
+              name="ageInput"
               className="monsterAge"
               type="text"
               value={formInputs.ageInput}
