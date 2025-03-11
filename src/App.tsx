@@ -1,6 +1,35 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import "./App.scss";
 
+type FormInputProps = {
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  className: string;
+  type: string;
+  value: string | number;
+};
+
+function FormInput({
+  value,
+  handleInputChange,
+  name,
+  className,
+  type,
+}: FormInputProps) {
+  return (
+    <label htmlFor={name}>
+      <input
+        id={name}
+        name={name}
+        className={className}
+        type={type}
+        value={value}
+        onChange={handleInputChange}
+      />
+    </label>
+  );
+}
+
 function MonsterCategoryDropdown() {
   const [foldOut, setFoldOut] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -51,9 +80,9 @@ function MonsterForm() {
     }));
   };
 
-  /*  useEffect(() => {
-      console.log("FormInputs", formInputs);
-    }, [formInputs]); */
+  useEffect(() => {
+    console.log("FormInputs", formInputs);
+  }, [formInputs]);
   return (
     <>
       <div className="monsterForm__container">
@@ -64,47 +93,36 @@ function MonsterForm() {
         >
           <fieldset className="monsterFieldSet">
             <legend>Lägg till student</legend>
-            <label htmlFor="nameInput">
-              <input
-                id="nameInput"
-                name="nameInput"
-                className="monsterName__input"
-                type="text"
-                value={formInputs.nameInput}
-                onChange={handleMonsterFormInputs}
-              />
-            </label>
-            <label htmlFor="surNameInput">
-              <input
-                id="surNameInput"
-                name="surNameInput"
-                value={formInputs.surNameInput}
-                onChange={handleMonsterFormInputs}
-                className="monsterSurname__input"
-                type="text"
-              />
-            </label>
-            <label htmlFor="course">
-              <input
-                id="course"
-                name="course"
-                value={formInputs.course}
-                onChange={handleMonsterFormInputs}
-                className="monsterCourse"
-                type="text"
-              />
-            </label>
-            <label htmlFor="age">
-              <input
-                id="age"
-                name="age"
-                value={formInputs.age}
-                onChange={handleMonsterFormInputs}
-                className="monsterAge"
-                type="text"
-              />
-            </label>
+            <FormInput
+              name="nameInput"
+              className="monsterName__input"
+              type="text"
+              value={formInputs.nameInput}
+              handleInputChange={handleMonsterFormInputs}
+            />
+            <FormInput
+              name="surNameInput"
+              className="monsterSurname__input"
+              type="text"
+              value={formInputs.surNameInput}
+              handleInputChange={handleMonsterFormInputs}
+            />
+            <FormInput
+              name="course"
+              className="monsterCourse"
+              type="text"
+              value={formInputs.course}
+              handleInputChange={handleMonsterFormInputs}
+            />
+            <FormInput
+              name="age"
+              className="monsterAge"
+              type="text"
+              value={formInputs.age}
+              handleInputChange={handleMonsterFormInputs}
+            />
             <MonsterCategoryDropdown />
+            <button type="submit">Lägg till</button>
           </fieldset>
         </form>
       </div>
