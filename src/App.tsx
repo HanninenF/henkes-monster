@@ -1,6 +1,18 @@
-﻿import "./App.scss";
+﻿import { useEffect, useState } from "react";
+import "./App.scss";
 
 function App() {
+  //inputState
+  const [nameInput, setNameInput] = useState<string>("");
+
+  const handleNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const nameInputElement = e.target;
+    setNameInput(nameInputElement.value);
+  };
+
+  useEffect(() => {
+    console.log("nameInput", nameInput);
+  }, [nameInput]);
   /* form */
   function MonsterForm() {
     return (
@@ -10,7 +22,12 @@ function App() {
             <fieldset className="monsterFieldSet">
               <legend>Lägg till student</legend>
               <label htmlFor="">
-                <input className="monsterName__input" type="text" />
+                <input
+                  className="monsterName__input"
+                  type="text"
+                  value={nameInput}
+                  onChange={handleNameInput}
+                />
               </label>
               <label htmlFor="">
                 <input className="monsterSurname__input" type="text" />
