@@ -1,5 +1,6 @@
 ﻿import { useEffect, useRef, useState } from "react";
 import "./App.scss";
+import { MonsterData, monsterData } from "./assets/monsterdata/monsterData";
 
 export type MonsterType = {
   name: string;
@@ -38,23 +39,42 @@ function FormInput({
   );
 }
 
-function MonsterCategoryDropdown() {
+type MonsterCategoryDropdownProps = {
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+};
+
+function MonsterCategoryDropdown({
+  setCategory,
+}: MonsterCategoryDropdownProps) {
   const [foldOut, setFoldOut] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleCategory = (monster: string) => {
+    setCategory(monster);
+    setFoldOut(false);
+  };
 
   const handleFoldOut = () => {
     setFoldOut((prev) => !prev);
   };
   return (
     <>
-      <div className="dropdownContainer" ref={dropdownRef}>
+      <div className="dropdown__container" ref={dropdownRef}>
         <div className={`${foldOut ? "options" : "invisible"}`}>
           <div className="foldOut">
-            <button>CookieMonster</button>
-            <button>somethingMonster</button>
+            {monsterData.map((monster, index) => (
+              <button
+                type="button"
+                onClick={() => handleCategory(monster)}
+                className="monsterCategory"
+                key={`${monster}-${index}`}
+              >
+                {monster}
+              </button>
+            ))}
           </div>
         </div>
-        <button className="foldOutButton" onClick={handleFoldOut}>
+        <button type="button" className="foldOutButton" onClick={handleFoldOut}>
           v
         </button>
       </div>
@@ -70,9 +90,17 @@ type MonsterFormType = {
 };
 type MonsterFormProps = {
   setMonsters: React.Dispatch<React.SetStateAction<MonsterType[]>>;
+  setCategory: React.Dispatch<React.SetStateAction<string>>;
+  category: string;
+  monsters: MonsterType[];
 };
 /* form */
-function MonsterForm({ setMonsters }: MonsterFormProps) {
+function MonsterForm({
+  setMonsters,
+  setCategory,
+  category,
+  monsters,
+}: MonsterFormProps) {
   //inputState
   const [formInputs, setFormInputs] = useState<MonsterFormType>({
     nameInput: "",
@@ -80,6 +108,19 @@ function MonsterForm({ setMonsters }: MonsterFormProps) {
     course: "",
     age: 0,
   });
+
+  const handleMonsterFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newMonster: MonsterType = {
+      name: formInputs.nameInput,
+      surName: formInputs.surNameInput,
+      course: formInputs.course,
+      age: formInputs.age,
+      category: category,
+    };
+
+    setMonsters((prevMonsters) => [...prevMonsters, newMonster]);
+  };
 
   const handleMonsterFormInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
@@ -92,14 +133,15 @@ function MonsterForm({ setMonsters }: MonsterFormProps) {
 
   useEffect(() => {
     console.log("FormInputs", formInputs);
-  }, [formInputs]);
+    console.log("monsters", monsters);
+  }, [formInputs, monsters]);
   return (
     <>
       <div className="monsterForm__container">
         <form
           className="monsterForm"
           action=""
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleMonsterFormSubmit}
         >
           <fieldset className="monsterFieldSet">
             <legend>Lägg till student</legend>
@@ -131,7 +173,7 @@ function MonsterForm({ setMonsters }: MonsterFormProps) {
               value={formInputs.age}
               handleInputChange={handleMonsterFormInputs}
             />
-            <MonsterCategoryDropdown />
+            <MonsterCategoryDropdown setCategory={setCategory} />
             <button type="submit">Lägg till</button>
           </fieldset>
         </form>
@@ -145,12 +187,18 @@ function MonsterCard() {
 }
 
 function App() {
-  const [monsters, setMonsters] = useState<MonsterType[]>([]);
+  const [MONSTERS, setMonsters] = useState<MonsterType[]>([]);
+  const [CATEGORY, setCategory] = useState<string>("");
   {
   }
   return (
     <>
-      <MonsterForm setMonsters={setMonsters} />
+      <MonsterForm
+        monsters={MONSTERS}
+        category={CATEGORY}
+        setCategory={setCategory}
+        setMonsters={setMonsters}
+      />
       {/* <MonsterCard /> */}
     </>
   );
