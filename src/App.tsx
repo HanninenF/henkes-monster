@@ -1,7 +1,31 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect, useRef, useState } from "react";
 import "./App.scss";
 
-type MonsterForm = {
+function MonsterCategoryDropdown() {
+  const [foldOut, setFoldOut] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleFoldOut = () => {
+    setFoldOut((prev) => !prev);
+  };
+  return (
+    <>
+      <div className="dropdownContainer" ref={dropdownRef}>
+        <div className={`${foldOut ? "options" : "invisible"}`}>
+          <div className="foldOut">
+            <button>CookieMonster</button>
+            <button>somethingMonster</button>
+          </div>
+        </div>
+        <button className="foldOutButton" onClick={handleFoldOut}>
+          v
+        </button>
+      </div>
+    </>
+  );
+}
+
+type MonsterFormType = {
   nameInput: string;
   surNameInput: string;
   course: string;
@@ -11,7 +35,7 @@ type MonsterForm = {
 /* form */
 function MonsterForm() {
   //inputState
-  const [formInputs, setFormInputs] = useState<MonsterForm>({
+  const [formInputs, setFormInputs] = useState<MonsterFormType>({
     nameInput: "",
     surNameInput: "",
     course: "",
@@ -27,13 +51,17 @@ function MonsterForm() {
     }));
   };
 
-  useEffect(() => {
-    console.log("FormInputs", formInputs);
-  }, [formInputs]);
+  /*  useEffect(() => {
+      console.log("FormInputs", formInputs);
+    }, [formInputs]); */
   return (
     <>
       <div className="monsterForm__container">
-        <form className="monsterForm" action="">
+        <form
+          className="monsterForm"
+          action=""
+          onSubmit={(e) => e.preventDefault()}
+        >
           <fieldset className="monsterFieldSet">
             <legend>Lägg till student</legend>
             <label htmlFor="nameInput">
@@ -76,6 +104,7 @@ function MonsterForm() {
                 type="text"
               />
             </label>
+            <MonsterCategoryDropdown />
           </fieldset>
         </form>
       </div>
