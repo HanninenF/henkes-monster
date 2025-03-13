@@ -1,0 +1,32 @@
+.cardContainer {
+  position: relative;
+  color: black;
+  background: #94bdfc;
+  border: 2px solid #9f9f9f;
+  .nameWrapper {
+    background: white;
+    h2 {
+    }
+  }
+  .ageWrapper {
+    right: -15px;
+    top: -15px;
+    position: absolute;
+    display: flex;
+    width: 57px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: #e23139;
+    justify-content: center;
+    align-items: center;
+    h3 {
+    }
+  }
+  .courseWrapper {
+    background: white;
+    h4 {
+    }
+  }
+  .categoryWrapper {
+  }
+}

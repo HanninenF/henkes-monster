@@ -3,6 +3,7 @@ import MonsterCategoryDropdown from "../MonsterCategoryDropdown/MonsterCategoryD
 import FormInput from "../../components/FormInput/FormInput";
 import MonsterType from "../../types/MonsterFormType";
 import { MonsterContext } from "../../Contexts/MonsterContext";
+import { nanoid } from "nanoid";
 
 type MonsterFormInputsType = {
   nameInput: string;
@@ -32,6 +33,7 @@ export default function MonsterForm() {
       course: formInputs.courseInput,
       age: formInputs.ageInput,
       category: context?.category,
+      id: nanoid(),
     };
 
     context?.setMonsters((prevMonsters) => [...prevMonsters, newMonster]);
@@ -41,7 +43,7 @@ export default function MonsterForm() {
       courseInput: "",
       ageInput: 0,
     });
-    context?.setCategory("");
+    context?.setCategory("Candyking");
   };
 
   const handleMonsterFormInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,8 +104,4 @@ export default function MonsterForm() {
       </div>
     </>
   );
-}
-
-function MonsterCard() {
-  //TODO: add monsterCard with state
 }

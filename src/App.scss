@@ -9,6 +9,7 @@
         display: flex;
         align-items: flex-start;
         position: relative;
+        z-index: 1000;
         .options {
           position: absolute; /* Gör att dropdownen inte påverkar layouten */
           top: 100%; /* Placera den under knappen */

@@ -4,5 +4,6 @@ type MonsterType = {
   course: string;
   age: number;
   category: string | undefined;
+  id: string;
 };
 export default MonsterType;
