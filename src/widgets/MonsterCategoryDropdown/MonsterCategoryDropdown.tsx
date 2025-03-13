@@ -1,18 +1,14 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { monsterData } from "../../assets/monsterdata/monsterData";
+import { MonsterContext } from "../../Contexts/MonsterContext";
 
-type MonsterCategoryDropdownProps = {
-  setCategory: React.Dispatch<React.SetStateAction<string>>;
-};
-
-export default function MonsterCategoryDropdown({
-  setCategory,
-}: MonsterCategoryDropdownProps) {
+export default function MonsterCategoryDropdown() {
+  const context = useContext(MonsterContext);
   const [foldOut, setFoldOut] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleCategoryClick = (monster: string) => {
-    setCategory(monster);
+    context?.setCategory(monster);
     setFoldOut(false);
   };
 

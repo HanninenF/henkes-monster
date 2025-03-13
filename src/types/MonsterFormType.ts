@@ -3,6 +3,6 @@ type MonsterType = {
   surName: string;
   course: string;
   age: number;
-  category: string;
+  category: string | undefined;
 };
 export default MonsterType;

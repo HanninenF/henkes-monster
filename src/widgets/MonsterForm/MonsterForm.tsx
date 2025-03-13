@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import MonsterCategoryDropdown from "../MonsterCategoryDropdown/MonsterCategoryDropdown";
 import FormInput from "../../components/FormInput/FormInput";
 import MonsterType from "../../types/MonsterFormType";
+import { MonsterContext } from "../../Contexts/MonsterContext";
 
 type MonsterFormInputsType = {
   nameInput: string;
@@ -9,19 +10,12 @@ type MonsterFormInputsType = {
   courseInput: string;
   ageInput: number;
 };
-type MonsterFormProps = {
-  setMonsters: React.Dispatch<React.SetStateAction<MonsterType[]>>;
-  setCategory: React.Dispatch<React.SetStateAction<string>>;
-  category: string;
-  monsters: MonsterType[];
-};
+
 /* form */
-export default function MonsterForm({
-  setMonsters,
-  setCategory,
-  category,
-  monsters,
-}: MonsterFormProps) {
+export default function MonsterForm() {
+  //context
+  const context = useContext(MonsterContext);
+
   //inputState
   const [formInputs, setFormInputs] = useState<MonsterFormInputsType>({
     nameInput: "",
@@ -37,10 +31,17 @@ export default function MonsterForm({
       surName: formInputs.surNameInput,
       course: formInputs.courseInput,
       age: formInputs.ageInput,
-      category: category,
+      category: context?.category,
     };
 
-    setMonsters((prevMonsters) => [...prevMonsters, newMonster]);
+    context?.setMonsters((prevMonsters) => [...prevMonsters, newMonster]);
+    setFormInputs({
+      nameInput: "",
+      surNameInput: "",
+      courseInput: "",
+      ageInput: 0,
+    });
+    context?.setCategory("");
   };
 
   const handleMonsterFormInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +55,8 @@ export default function MonsterForm({
 
   useEffect(() => {
     console.log("FormInputs", formInputs);
-    console.log("monsters", monsters);
-  }, [formInputs, monsters]);
+    console.log("monsters", context?.monsters);
+  }, [formInputs, context?.monsters]);
   return (
     <>
       <div className="monsterForm__container">
@@ -94,7 +95,7 @@ export default function MonsterForm({
               value={formInputs.ageInput}
               handleInputChange={handleMonsterFormInputs}
             />
-            <MonsterCategoryDropdown setCategory={setCategory} />
+            <MonsterCategoryDropdown />
             <button type="submit">Lägg till</button>
           </fieldset>
         </form>
