@@ -1,32 +1,72 @@
 .cardContainer {
-  position: relative;
-  color: black;
-  background: #94bdfc;
-  border: 2px solid #9f9f9f;
-  .nameWrapper {
-    background: white;
-    h2 {
-    }
-  }
-  .ageWrapper {
-    right: -15px;
-    top: -15px;
-    position: absolute;
+  padding: 1em;
+  margin: 2em 0;
+  width: 100%;
+  min-height: 253.07px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  align-items: center;
+  background-color: rgb(135, 183, 211);
+  .card {
+    width: 100%;
+    min-height: 253.07px;
+    max-height: 430px;
+    padding: 25% 7% 25% 7%;
     display: flex;
-    width: 57px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    background: #e23139;
-    justify-content: center;
-    align-items: center;
-    h3 {
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-width: 20vw;
+    position: relative;
+    color: black;
+
+    background: #94bdfc;
+    border: 2px solid #ffffff;
+
+    /* border: 2px solid #9f9f9f; */
+
+    .ageWrapper {
+      right: -15px;
+      top: -15px;
+      position: absolute;
+      display: flex;
+      width: 30%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: #e23139;
+      justify-content: center;
+      align-items: center;
+      .age__h3 {
+        font-size: clamp(0.5rem, 2vw, 1.2rem);
+        font-family: cursive;
+        /* color: white; */
+      }
     }
-  }
-  .courseWrapper {
-    background: white;
-    h4 {
+
+    .courseWrapper,
+    .nameWrapper {
+      padding: 10px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      background: white;
+
+      .course__h4,
+      .name__h2 {
+        font-size: clamp(0.5rem, 2vw, 1.2rem);
+        word-wrap: break-word;
+        font-family: cursive;
+        /* color: white; */
+      }
     }
-  }
-  .categoryWrapper {
+
+    .categoryWrapper {
+      img {
+        border-radius: 5px;
+        width: 100%;
+      }
+    }
   }
 }

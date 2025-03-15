@@ -4,6 +4,7 @@ type FormInputProps = {
   className: string;
   type: string;
   value: string | number;
+  placeHolder: string;
 };
 
 export default function FormInput({
@@ -12,9 +13,10 @@ export default function FormInput({
   name,
   className,
   type,
+  placeHolder,
 }: FormInputProps) {
   return (
-    <label htmlFor={name}>
+    <label className={`formLabel`} htmlFor={name}>
       <input
         id={name}
         name={name}
@@ -22,6 +24,7 @@ export default function FormInput({
         type={type}
         value={value}
         onChange={handleInputChange}
+        placeholder={placeHolder}
       />
     </label>
   );
