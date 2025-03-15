@@ -4,6 +4,7 @@
 
   margin: 2em 0 2em 0;
   .monsterForm {
+    color: #515a72;
     .monsterFieldSet {
       width: 100%;
       display: flex;
@@ -12,6 +13,8 @@
       gap: 1em;
       border: 2px solid black;
       padding: 10px;
+      background: #a3c7ff;
+      border-radius: 5px;
 
       .monsterLegend {
         width: 100%;
