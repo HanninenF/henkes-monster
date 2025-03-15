@@ -9,7 +9,11 @@ export default function MonsterCard() {
 
   return (
     <>
-      <div className="cardContainer">
+      <div
+        className={
+          (context?.monsters ?? []).length > 0 ? "cardContainer" : "invisible"
+        }
+      >
         {context?.monsters.map((monster) => (
           <div className="card" key={monster.id}>
             <div className="nameWrapper">

@@ -23,6 +23,8 @@
 
     background: #94bdfc;
     border: 2px solid #ffffff;
+    box-shadow: 0px 0px 10px 5px hsl(0 0% 41% / 1);
+    border-radius: 5px;
 
     /* border: 2px solid #9f9f9f; */
 
@@ -31,12 +33,13 @@
       top: -15px;
       position: absolute;
       display: flex;
-      width: 30%;
+      width: 25%;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
       background: #e23139;
       justify-content: center;
       align-items: center;
+      z-index: 1;
       .age__h3 {
         font-size: clamp(0.5rem, 2vw, 1.2rem);
         font-family: cursive;
