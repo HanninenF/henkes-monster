@@ -121,7 +121,7 @@ export default function MonsterForm() {
             />
             <MonsterCategoryDropdown />
             <button className="addMonster" type="submit">
-              Add monster
+              Add student
             </button>
           </fieldset>
         </form>
