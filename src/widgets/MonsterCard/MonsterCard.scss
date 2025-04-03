@@ -29,9 +29,11 @@
     /* border: 2px solid #9f9f9f; */
 
     .ageWrapper {
+      transition: 2s;
       right: -15px;
       top: -15px;
       position: absolute;
+
       display: flex;
       width: 25%;
       aspect-ratio: 1 / 1;
@@ -44,6 +46,12 @@
         font-size: clamp(0.5rem, 2vw, 1.2rem);
         font-family: cursive;
         /* color: white; */
+      }
+      &:hover,
+      .age__h2:hover {
+        transform: skew(33deg, -35deg);
+        animation: 2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background-color: aqua;
       }
     }
 

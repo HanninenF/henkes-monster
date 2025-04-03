@@ -10,6 +10,7 @@ export type MonsterContextType = {
   setCategory: React.Dispatch<React.SetStateAction<MonsterCategories>>;
   category: MonsterCategories;
   monsters: MonsterType[];
+  deleteMonster: (id: string) => void;
 };
 
 export const MonsterContext = createContext<MonsterContextType | null>(null);
@@ -26,9 +27,13 @@ export default function MonsterContextProvider({
     monsterCategories[0]
   );
 
+  const deleteMonster = (id: string) => {
+    setMonsters((prev) => prev.filter((monster) => monster.id !== id));
+  };
+
   return (
     <MonsterContext.Provider
-      value={{ monsters, setMonsters, category, setCategory }}
+      value={{ monsters, setMonsters, category, setCategory, deleteMonster }}
     >
       {children}
     </MonsterContext.Provider>

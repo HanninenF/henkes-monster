@@ -7,6 +7,9 @@ export default function MonsterCard() {
   //TODO: add monsterCard with state
 
   const context = useContext(MonsterContext);
+  if (!context) return null;
+
+  const { deleteMonster } = context;
 
   return (
     <>
@@ -32,6 +35,7 @@ export default function MonsterCard() {
               <div className="categoryWrapper">
                 <img src={monster.category.imageSrc} alt="" />
               </div>
+              <button onClick={() => deleteMonster(monster.id)}>x</button>
             </Link>
           </li>
         ))}

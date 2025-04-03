@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { MonsterContext } from "../Contexts/MonsterContext";
-import MonsterType from "../types/MonsterFormType";
 
 export default function MonsterDetails() {
   const params = useParams();
   const context = useContext(MonsterContext);
+  if (!context) return null;
+
   const monster =
     context?.monsters.find((monster) => monster.id === params.monsterId) ??
     null;
